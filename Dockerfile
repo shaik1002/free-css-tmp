@@ -1,3 +1,2 @@
-from ubuntu
-run echo "docker" >/tmp/filee
-
+FROM httpd 
+COPY . /usr/local/apache2/htdocs/
