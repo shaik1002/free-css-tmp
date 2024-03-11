@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: http-deployment
+  labels:
+    app: http
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: http
+  template:
+    metadata:
+      labels:
+        app: http 
+    spec:
+      containers:
+      - name: myhpptcont
+        image: shaik1002/dockerimage:8
+        ports:
+        - containerPort: 3000
+        
+        
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: http-service
+spec:
+  selector:
+    app: hhtp
+  type: LoadBalancer
+  ports:
+  - protocol: TCP
+    port: 5000
+    targetPort: 3000
+    nodePort: 31110
